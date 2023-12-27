@@ -10,6 +10,15 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 
 
+menu = [
+    {'title': "О нас", 'url_name': 'about'},
+    {'title': "Новости", 'url_name': 'news'},
+    {'title': "Условия работы", 'url_name': 'working_conditions'},
+    {'title': "Отзывы", 'url_name': 'reviews'},
+    {'title': "Контакты", 'url_name': 'contacts'},
+    {'title': "Статьи", 'url_name': 'articles'}
+]
+
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -21,7 +30,8 @@ def register(request):
             messages.error(request, 'Ошибка регистрации')
     else:
         form = UserRegisterForm()
-    return render(request, 'users/register.html', {"form": form})
+
+    return render(request, 'users/register.html', {"form": form, "menu": menu})
 
 
 def user_login(request):
@@ -33,7 +43,7 @@ def user_login(request):
             return redirect('home')
     else:
         form = UserLoginForm()
-    return render(request, 'users/login.html', {"form": form})
+    return render(request, 'users/login.html', {"form": form, "menu": menu})
 
 
 def user_logout(request):

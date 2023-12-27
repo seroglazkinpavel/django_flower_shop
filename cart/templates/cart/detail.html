@@ -4,7 +4,7 @@
     Your shopping cart
 {% endblock %}
 {% block content %}
-<!--<div class="contents container">-->
+    <div class="runner"><img src="{% static 'images/1963.jpg' %}"></div>
     <div class="karzina">
         <h2 class="cartTitle">Корзина</h2>
         {% if cart %}
@@ -62,5 +62,49 @@
         </div>
         {% endif %}
     </div>
-<!--</div>-->
+    <div class="karzina_adaptive">
+        <h2 class="cartTitle">Корзина</h2>
+        {% if cart %}
+<!--            <p class="choice">Вы выбрали такие товары:</p>-->
+            {% for item in cart %}
+                {% with product=item.product %}
+                <div class="karzina_general">
+                    <div class="karzina_item">
+<!--                        {% if product.image %}-->
+<!--                        <img src="{{product.image.url}}" alt="">-->
+<!--                        {% endif %}-->
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+                                {% if product.image %}
+                                    {{ product.image.url }}
+                                {% endif %}">
+                        </a>
+                    </div>
+                    <div class="karzina_item item2">
+                        <h3>{{ product.title }}</h3>
+                        <ul class="karzina_item_ul">
+<!--                            <li>Наименование товара: <span class="record">{{ product.title }}</span></li>-->
+                            <li>Количество: <span class="record">{{ item.quantity }}</span></li>
+                            <li>Цена за единицу: <span class="record">${{ item.price }}</span></li>
+                            <li>Общая стоимость: <span class="record">${{ cart.get_total_price }}</span></li>
+                            <li>Удалить: <a href="{% url 'cart:cart_remove' product.id %}">Remove</a></li>
+                        </ul>
+                    </div>
+                </div>
+                {% endwith %}
+            {% endfor %}
+        {% else %}
+            <p class="basketEmpty">Корзина пустая</p>
+        {% endif %}
+        {% if cart %}
+            <div class="karzinaZaka">
+                <a href="{% url 'orders:order_create' %}">
+                    <img src="{% static 'images/basket.png' %}" alt="basket">
+                    <span>
+		    			Оформить заказ
+		    		</span>
+                </a>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

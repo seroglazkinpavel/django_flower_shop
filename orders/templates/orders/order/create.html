@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Checkout{% endblock %}
 
 {% block content %}
+<div class="runner"><img src="{% static 'images/1963.jpg' %}"></div>
 <h2 class="title-makingOrder">Создание заказов клиентов</h2>
 <div class="makingOrder">
-
     <div class="box-form">
         <h3 class="title-checkout">Проверка</h3>
         <form action="." method="post" class="order-form">

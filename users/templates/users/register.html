@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
 Регистрация :: {{ block.super }}
 {% endblock %}
 {% block content %}
+    <div class="runner"><img src="{% static 'images/1963.jpg' %}"></div>
     <div class="auth_block">
         <h1 class="title_login">Регистрация</h1>
         <form method="post" class="form_login">

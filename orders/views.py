@@ -3,6 +3,15 @@ from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
 
+menu = [
+    {'title': "О нас", 'url_name': 'about'},
+    {'title': "Новости", 'url_name': 'news'},
+    {'title': "Условия работы", 'url_name': 'working_conditions'},
+    {'title': "Отзывы", 'url_name': 'reviews'},
+    {'title': "Контакты", 'url_name': 'contacts'},
+    {'title': "Статьи", 'url_name': 'articles'}
+]
+
 
 def order_create(request):
     cart = Cart(request)
@@ -22,4 +31,4 @@ def order_create(request):
     else:
         form = OrderCreateForm
     return render(request, 'orders/order/create.html',
-                  {'cart': cart, 'form': form})
+                  {'cart': cart, 'form': form, 'menu': menu})

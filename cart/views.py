@@ -4,6 +4,15 @@ from flower.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
 
+menu = [
+    {'title': "О нас", 'url_name': 'about'},
+    {'title': "Новости", 'url_name': 'news'},
+    {'title': "Условия работы", 'url_name': 'working_conditions'},
+    {'title': "Отзывы", 'url_name': 'reviews'},
+    {'title': "Контакты", 'url_name': 'contacts'},
+    {'title': "Статьи", 'url_name': 'articles'}
+]
+
 
 @require_POST
 def cart_add(request, product_id):
@@ -27,4 +36,4 @@ def cart_remove(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
-    return render(request, 'cart/detail.html', {'cart': cart})
+    return render(request, 'cart/detail.html', {'cart': cart, 'menu': menu})
